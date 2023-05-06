@@ -2,10 +2,12 @@ package com.example.openfeignpayments.controllers;
 
 import com.example.openfeignpayments.models.Payment;
 import com.example.openfeignpayments.proxies.PaymentProxy;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -21,4 +23,10 @@ public class PaymentController {
         String requestId = UUID.randomUUID().toString();
         return paymentProxy.createPayment(requestId, payment);
     }
+
+    @GetMapping("/payment")
+    public List<Payment> getAll() {
+        return paymentProxy.getAll();
+    }
+
 }
